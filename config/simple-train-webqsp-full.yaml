@@ -1,0 +1,24 @@
+job.type: train
+job.device: 'cuda'
+dataset.name: fbwq_full
+model: simple
+
+train:
+  max_epochs: 100
+  num_workers: 5
+
+  optimizer.default:
+    type: Adagrad
+    args:
+      lr: 0.1
+      weight_decay: 0.4e-7
+  batch_size: 32
+  subbatch_auto_tune: True
+
+eval:
+  batch_size: 32
+  num_workers: 5
+
+valid:
+  every: 1
+  metric: mean_reciprocal_rank_filtered
